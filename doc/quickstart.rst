@@ -51,12 +51,12 @@ with place-holders for the dimensions. Paste this into the code editor:
 .. code-block:: python
    :linenos:
 
-    height = 60.0
+    length = 60.0
     width = 80.0
-    thickness = 10.0
+    height = 10.0
 
     # make the base
-    result = cq.Workplane("XY").box(height, width, thickness)
+    result = cq.Workplane("XY").box(length, width, height)
 
     # Render the solid
     show_object(result)
@@ -78,15 +78,15 @@ This modification will do the trick:
    :linenos:
    :emphasize-lines: 4,10-12
 
-    height = 60.0
+    length = 60.0
     width = 80.0
-    thickness = 10.0
+    height = 10.0
     diameter = 22.0
 
     # make the base
     result = (
         cq.Workplane("XY")
-        .box(height, width, thickness)
+        .box(length, width, height)
         .faces(">Z")
         .workplane()
         .hole(diameter)
@@ -136,22 +136,22 @@ Good news!-- we can get the job done with just a few lines of code. Here's the c
    :linenos:
    :emphasize-lines: 5,14-17
 
-    height = 60.0
+    length = 60.0
     width = 80.0
-    thickness = 10.0
+    height = 10.0
     diameter = 22.0
     padding = 12.0
 
     # make the base
     result = (
         cq.Workplane("XY")
-        .box(height, width, thickness)
+        .box(length, width, height)
         .faces(">Z")
         .workplane()
         .hole(diameter)
         .faces(">Z")
         .workplane()
-        .rect(height - padding, width - padding, forConstruction=True)
+        .rect(length - padding, width - padding, forConstruction=True)
         .vertices()
         .cboreHole(2.4, 4.4, 2.1)
     )
@@ -206,22 +206,22 @@ We can do that using the preset dictionaries in the parameter definition:
    :linenos:
    :emphasize-lines: 19-20
 
-    height = 60.0
+    length = 60.0
     width = 80.0
-    thickness = 10.0
+    height = 10.0
     diameter = 22.0
     padding = 12.0
 
     # make the base
     result = (
         cq.Workplane("XY")
-        .box(height, width, thickness)
+        .box(length, width, height)
         .faces(">Z")
         .workplane()
         .hole(diameter)
         .faces(">Z")
         .workplane()
-        .rect(height - padding, width - padding, forConstruction=True)
+        .rect(length - padding, width - padding, forConstruction=True)
         .vertices()
         .cboreHole(2.4, 4.4, 2.1)
         .edges("|Z")
@@ -251,22 +251,22 @@ This can be easily accomplished using the :py:meth:`cadquery.exporters.export` f
    :linenos:
    :emphasize-lines: 27-29
 
-    height = 60.0
+    length = 60.0
     width = 80.0
-    thickness = 10.0
+    height = 10.0
     diameter = 22.0
     padding = 12.0
 
     # make the base
     result = (
         cq.Workplane("XY")
-        .box(height, width, thickness)
+        .box(length, width, height)
         .faces(">Z")
         .workplane()
         .hole(diameter)
         .faces(">Z")
         .workplane()
-        .rect(height - padding, width - padding, forConstruction=True)
+        .rect(length - padding, width - padding, forConstruction=True)
         .vertices()
         .cboreHole(2.4, 4.4, 2.1)
         .edges("|Z")
